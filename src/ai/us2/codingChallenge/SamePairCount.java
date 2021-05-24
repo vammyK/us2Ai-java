@@ -39,6 +39,18 @@ public class SamePairCount {
                 .sorted(Comparator.comparing(Map.Entry::getValue)).map(e -> SamePairs.of(e.getKey(), e.getValue())).collect(Collectors.toList());
 
     }
+    public static Integer getCommonPairs(String sequence) {
+        if (sequence == null || sequence.isEmpty()) {
+            return 0;
+        }
+        if (referenceMap.containsKey(sequence)) {
+            return referenceMap.get(sequence);
+        }
+        Integer res = getCommonPairs(sequence.substring(0, 2)) + getCommonPairs(sequence.substring(1));
+        referenceMap.put(sequence, res);
+        return res;
+    }
+
 
     public static Map<String, Integer> referenceMap;
 
@@ -51,17 +63,6 @@ public class SamePairCount {
         referenceMap.put("01", 0);
     }
 
-    public static Integer getCommonPairs(String sequence) {
-        if (sequence == null || sequence.isEmpty()) {
-            return 0;
-        }
-        if (referenceMap.containsKey(sequence)) {
-            return referenceMap.get(sequence);
-        }
-        Integer res = getCommonPairs(sequence.substring(0, 2)) + getCommonPairs(sequence.substring(1));
-        referenceMap.put(sequence, res);
-        return res;
-    }
 
 
     public static void main(String[] args) {

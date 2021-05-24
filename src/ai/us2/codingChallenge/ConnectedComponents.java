@@ -3,29 +3,11 @@ package ai.us2.codingChallenge;
 import java.util.Arrays;
 
 public class ConnectedComponents {
-
-    public static void main(String[] args) {
-        int[][] data = new int[][]{
-                {0, 0, 1, 1},
-                {1, 1, 0, 1},
-                {0, 0, 0, 0},
-                {0, 1, 1, 0},
-                {0, 1, 1, 1}
-        };
-
-        ConnectedComponents cc = new ConnectedComponents();
-        System.out.println(Arrays.deepToString(cc.cc4Connectivity(data)));
-
-    }
-
-    static int[][] connectivity;
-    static int graphs = 0;
-
     /*
-    Explanation:
-    The connected components of an 2d Array/pixels can be considered as a Graph and to traverse it,
-    we use BFS, and traverse all connected components, once a given BFS finishes, change the number to find 2nd graph and so on.
-     */
+  Explanation:
+  The connected components of an 2d Array/pixels can be considered as a Graph and to traverse it,
+  we use BFS, and traverse all connected components, once a given BFS finishes, change the number to find 2nd graph and so on.
+   */
     int[][] cc4Connectivity(int[][] pixels) {
         connectivity = generateBlank2DArray(pixels.length, pixels[0].length);
         for (int i = 0; i < pixels.length; i++) {
@@ -63,6 +45,25 @@ public class ConnectedComponents {
         bfs(pixels, graphs, i, j + 1);
 
     }
+
+    public static void main(String[] args) {
+        int[][] data = new int[][]{
+                {0, 0, 1, 1},
+                {1, 1, 0, 1},
+                {0, 0, 0, 0},
+                {0, 1, 1, 0},
+                {0, 1, 1, 1}
+        };
+
+        ConnectedComponents cc = new ConnectedComponents();
+        System.out.println(Arrays.deepToString(cc.cc4Connectivity(data)));
+
+    }
+
+    static int[][] connectivity;
+    static int graphs = 0;
+
+
 
 
     private int[][] generateBlank2DArray(int x, int y) {
