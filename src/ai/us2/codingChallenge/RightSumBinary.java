@@ -1,5 +1,6 @@
 package ai.us2.codingChallenge;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,9 +77,6 @@ public class RightSumBinary {
         return medianPath;
     }
 
-    private void flip() {
-    }
-
     private int calculateSum(List<String> path) {
         int sum = 1;
         int number = 1;
@@ -92,12 +90,7 @@ public class RightSumBinary {
         }
         return sum;
     }
-    public static void main(String[] args) {
-        RightSumBinary rightSumBinary = new RightSumBinary();
-        String ans = rightSumBinary.rightSum(9, 1000, 2831);
-        System.out.println(ans);
 
-    }
     /*
     For EACH M &N, We need to go Right M-1 times and Down N-1 Times.
     Divide M with N, and that many times a switch will keep Happening.
@@ -122,5 +115,36 @@ public class RightSumBinary {
         }
         return ret;
     }
+
+    public static void main(String[] args) {
+        RightSumBinary rightSumBinary = new RightSumBinary();
+        MessageFormat format= new MessageFormat("For M: {0},N: {1},SUM: {2}, Path is : {3}");
+
+        String ans = rightSumBinary.rightSum(9, 9, 65);
+        System.out.println(format.format(new Object[]{9,9,65,ans}));
+
+        ans = rightSumBinary.rightSum(9, 9, 72);
+        System.out.println(format.format(new Object[]{9,9,72,ans}));
+
+        ans = rightSumBinary.rightSum(9, 9, 90);
+        System.out.println(format.format(new Object[]{9,9,90,ans}));
+
+        ans = rightSumBinary.rightSum(9, 9, 110);
+        System.out.println(format.format(new Object[]{9,9,110,ans}));
+
+        ans = rightSumBinary.rightSum(9, 1000, 2831);
+        System.out.println(format.format(new Object[]{9,1000,2831,ans}));
+
+        ans = rightSumBinary.rightSum(9, 1000, 4788);
+        System.out.println(format.format(new Object[]{9,1000,4788,ans}));
+
+        ans = rightSumBinary.rightSum(9, 1000, 5659);
+        System.out.println(format.format(new Object[]{9,1000,5659,ans}));
+
+        ans = rightSumBinary.rightSum(9, 1000, 6113);
+        System.out.println(format.format(new Object[]{9,1000,6113,ans}));
+
+    }
+
 
 }
