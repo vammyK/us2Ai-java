@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class SamePairCount {
 
 
-    private static List<FrequencyPair> generateFrequencies(List<SamePairs> samePairs) {
+    static List<FrequencyPair> generateFrequencies(List<SamePairs> samePairs) {
 
         return samePairs.stream().map(samepair -> FrequencyPair.defaultFreq(samepair.samePairs))
                 .collect(Collectors.groupingBy(f -> f.samePair, Collectors.reducing(FrequencyPair::reduce)))
@@ -27,7 +27,7 @@ public class SamePairCount {
 
     Then filter out only sequences which are of length 10 and then calculate its frequency.
      */
-    private static List<SamePairs> generateAllPairs() {
+    static List<SamePairs> generateAllPairs() {
         URL resource = SamePairCount.class.getClassLoader().getResource("BinaryNumbers.csv");
         try (Stream<String> linesStream = Files.lines(Path.of(resource.toURI()))) {
             linesStream.forEach(SamePairCount::getCommonPairs);
@@ -68,8 +68,10 @@ public class SamePairCount {
     public static void main(String[] args) {
         setup();
         List<SamePairs> samePairs = generateAllPairs();
+        System.out.println("Same Pairs Count");
         System.out.println(samePairs.toString());
         List<FrequencyPair> freq = generateFrequencies(samePairs);
+        System.out.println("Frequence of Same Pairs");
         System.out.println(freq.toString());
 
     }
